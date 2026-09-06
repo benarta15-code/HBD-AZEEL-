@@ -1,1 +1,718 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>❄️ Happy Birthday Azel ❄️</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Poppins:wght@300;400;600&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+            background: linear-gradient(135deg, #0c1445 0%, #1a237e 50%, #0d47a1 100%);
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* Snow Animation */
+        .snowflakes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .snowflake {
+            position: absolute;
+            top: -10px;
+            color: white;
+            font-size: 1em;
+            animation: fall linear infinite;
+            opacity: 0.8;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+            }
+        }
+
+        /* Magic Particles */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: radial-gradient(circle, rgba(173, 216, 230, 0.9), transparent);
+            border-radius: 50%;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) translateX(0);
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) translateX(50px);
+            }
+        }
+
+        /* Sections */
+        .section {
+            display: none;
+            min-height: 100vh;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .section.active {
+            display: flex;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Gate Section */
+        .gate-container {
+            text-align: center;
+            max-width: 500px;
+        }
+
+        .ice-castle {
+            font-size: 80px;
+            margin-bottom: 20px;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from {
+                filter: drop-shadow(0 0 10px rgba(173, 216, 230, 0.5));
+            }
+            to {
+                filter: drop-shadow(0 0 30px rgba(173, 216, 230, 1));
+            }
+        }
+
+        h1 {
+            font-family: 'Cinzel', serif;
+            color: #e3f2fd;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 0 0 20px rgba(173, 216, 230, 0.8);
+        }
+
+        .subtitle {
+            color: #b3e5fc;
+            font-size: 1.1em;
+            margin-bottom: 30px;
+        }
+
+        .input-group {
+            margin: 20px 0;
+        }
+
+        input[type="text"] {
+            padding: 15px 20px;
+            font-size: 1.2em;
+            border: 2px solid rgba(173, 216, 230, 0.5);
+            border-radius: 50px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            text-align: center;
+            width: 250px;
+            outline: none;
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+        }
+
+        input[type="text"]:focus {
+            border-color: #81d4fa;
+            box-shadow: 0 0 20px rgba(129, 212, 250, 0.5);
+            transform: scale(1.05);
+        }
+
+        input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .btn-magic {
+            padding: 15px 40px;
+            font-size: 1.1em;
+            border: none;
+            border-radius: 50px;
+            background: linear-gradient(135deg, #4fc3f7, #0288d1);
+            color: white;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: all 0.3s;
+            box-shadow: 0 5px 20px rgba(79, 195, 247, 0.4);
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+        }
+
+        .btn-magic:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(79, 195, 247, 0.6);
+        }
+
+        .btn-magic:active {
+            transform: translateY(0);
+        }
+
+        /* Message Section */
+        .message-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 30px;
+            padding: 40px;
+            max-width: 600px;
+            border: 2px solid rgba(173, 216, 230, 0.3);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            animation: slideIn 1s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .greeting {
+            font-family: 'Cinzel', serif;
+            color: #e3f2fd;
+            font-size: 2em;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .message-text {
+            color: #b3e5fc;
+            line-height: 1.8;
+            font-size: 1.1em;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .highlight {
+            color: #81d4fa;
+            font-weight: 600;
+        }
+
+        /* Hold Button */
+        .hold-btn {
+            position: relative;
+            padding: 20px 50px;
+            font-size: 1.2em;
+            border: 3px solid #81d4fa;
+            border-radius: 50px;
+            background: transparent;
+            color: white;
+            cursor: pointer;
+            overflow: hidden;
+            transition: all 0.3s;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+        }
+
+        .hold-progress {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 100%;
+            background: linear-gradient(90deg, #4fc3f7, #0288d1);
+            width: 0%;
+            transition: width 0.1s linear;
+            z-index: -1;
+        }
+
+        .hold-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(129, 212, 250, 0.5);
+        }
+
+        /* Love Meter */
+        .love-container {
+            text-align: center;
+            max-width: 500px;
+        }
+
+        .love-question {
+            color: #e3f2fd;
+            font-size: 1.8em;
+            margin-bottom: 30px;
+            font-family: 'Cinzel', serif;
+        }
+
+        .slider-container {
+            margin: 30px 0;
+        }
+
+        input[type="range"] {
+            width: 100%;
+            height: 10px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #4fc3f7, #0288d1);
+            cursor: pointer;
+            box-shadow: 0 0 20px rgba(79, 195, 247, 0.8);
+        }
+
+        .percentage {
+            font-size: 3em;
+            color: #81d4fa;
+            font-weight: 700;
+            margin: 20px 0;
+            text-shadow: 0 0 20px rgba(129, 212, 250, 0.8);
+        }
+
+        /* Music Player */
+        .music-player {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 30px;
+            max-width: 400px;
+            border: 2px solid rgba(173, 216, 230, 0.3);
+            text-align: center;
+        }
+
+        .music-icon {
+            font-size: 60px;
+            margin-bottom: 20px;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+        }
+
+        .play-btn {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 3px solid #81d4fa;
+            background: transparent;
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin: 20px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .play-btn:hover {
+            background: rgba(129, 212, 250, 0.2);
+            transform: scale(1.1);
+        }
+
+        .playing {
+            animation: rotate 3s linear infinite;
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Final Section */
+        .final-message {
+            text-align: center;
+            max-width: 600px;
+        }
+
+        .thank-you {
+            font-family: 'Cinzel', serif;
+            color: #e3f2fd;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        .sparkle {
+            display: inline-block;
+            animation: sparkle 1.5s ease-in-out infinite;
+        }
+
+        @keyframes sparkle {
+            0%, 100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.5;
+                transform: scale(1.2);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8em;
+            }
+            
+            .greeting {
+                font-size: 1.5em;
+            }
+            
+            .message-card {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Snow Effect -->
+    <div class="snowflakes" id="snowflakes"></div>
+    
+    <!-- Magic Particles -->
+    <div class="particles" id="particles"></div>
+
+    <!-- Section 1: Gate -->
+    <div class="section active" id="section1">
+        <div class="gate-container">
+            <div class="ice-castle">🏰</div>
+            <h1>Gerbang Es Elsa</h1>
+            <p class="subtitle">Masukkan tanggal lahir kamu (DDMMYY) untuk membuka ✨</p>
+            <div class="input-group">
+                <input type="text" id="birthdate" placeholder="Contoh: 150911" maxlength="6">
+            </div>
+            <button class="btn-magic" onclick="checkGate()">Buka Gerbang ❄️</button>
+            <p id="errorMsg" style="color: #ff8a80; margin-top: 15px; display: none;"></p>
+        </div>
+    </div>
+
+    <!-- Section 2: Greeting -->
+    <div class="section" id="section2">
+        <div class="message-card">
+            <h2 class="greeting">Hai Elsa Raisa Shafitri ✨</h2>
+            <p class="message-text">
+                Tahan tombol di bawah ini sebentar ya... 🎁
+            </p>
+            <button class="hold-btn" id="holdBtn1" 
+                    onmousedown="startHold()" 
+                    onmouseup="stopHold()" 
+                    onmouseleave="stopHold()"
+                    ontouchstart="startHold()" 
+                    ontouchend="stopHold()">
+                <div class="hold-progress" id="progress1"></div>
+                Tahan Aku! ❄️
+            </button>
+        </div>
+    </div>
+
+    <!-- Section 3: Main Message -->
+    <div class="section" id="section3">
+        <div class="message-card">
+            <h2 class="greeting">Kado Spesial Buat Azel 🎁</h2>
+            <div class="message-text">
+                <p><span class="highlight">Dear Azel,</span> 👑</p>
+                <br>
+                <p>Selamat ulang tahun yang ke-15 ya! 🎉</p>
+                <br>
+                <p>Semoga di usiamu yang baru ini, langkahmu makin dimudahkan, selalu dikelilingi kebahagiaan, dan makin dekat dengan semua cita-citamu.</p>
+                <br>
+                <p>Tetap jadi <span class="highlight">Azel</span> yang baik, ceria, dan bersinar seperti Ratu Elsa! ✨</p>
+                <br>
+                <p style="font-size: 1.3em; margin-top: 20px;">
+                    HADIAH SPESIAL DARI:<br>
+                    <span class="highlight" style="font-size: 1.5em;">✨ Atar ✨</span>
+                </p>
+            </div>
+            <button class="hold-btn" id="holdBtn2" 
+                    onmousedown="startHold2()" 
+                    onmouseup="stopHold2()" 
+                    onmouseleave="stopHold2()"
+                    ontouchstart="startHold2()" 
+                    ontouchend="stopHold2()">
+                <div class="hold-progress" id="progress2"></div>
+                Lanjutkan ❄️
+            </button>
+        </div>
+    </div>
+
+    <!-- Section 4: Love Meter -->
+    <div class="section" id="section4">
+        <div class="love-container">
+            <h2 class="love-question">Seberapa persen sayang kamu ke Atar? 🙈</h2>
+            <div class="slider-container">
+                <input type="range" id="loveSlider" min="0" max="100" value="50" oninput="updateLove(this.value)">
+            </div>
+            <div class="percentage" id="lovePercent">50%</div>
+            <p style="color: #b3e5fc; font-size: 1.2em; margin-top: 20px;">
+                Kamu sayang Atar gak, Azel? 🥺
+            </p>
+            <button class="btn-magic" onclick="goToMusic()" style="margin-top: 30px;">
+                Lanjut 🎶
+            </button>
+        </div>
+    </div>
+
+    <!-- Section 5: Music -->
+    <div class="section" id="section5">
+        <div class="music-player">
+            <div class="music-icon">🎵</div>
+            <h2 style="color: #e3f2fd; font-family: 'Cinzel', serif; margin-bottom: 10px;">Lagu Khusus Azel</h2>
+            <p style="color: #b3e5fc; margin-bottom: 20px;">Dengarkan lagu pilihan ini ya 🎧</p>
+            <button class="play-btn" id="playBtn" onclick="toggleMusic()">▶</button>
+            <audio id="bgMusic" loop>
+                <source src="your-song.mp3" type="audio/mpeg">
+            </audio>
+            <button class="btn-magic" onclick="goToFinal()" style="margin-top: 20px;">
+                Selesai ❄️
+            </button>
+        </div>
+    </div>
+
+    <!-- Section 6: Final -->
+    <div class="section" id="section6">
+        <div class="final-message">
+            <h2 class="thank-you">
+                Terima Kasih Ya! <span class="sparkle">❄️</span><span class="sparkle">✨</span>
+            </h2>
+            <p class="message-text" style="font-size: 1.3em;">
+                Makasih udah membaca pesan ini sampai selesai, Azel.<br>
+                Semoga hari-harimu selalu menyenangkan! 💙
+            </p>
+            <div style="font-size: 60px; margin-top: 30px; animation: glow 2s ease-in-out infinite alternate;">
+                👑❄️💙
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Create snowflakes
+        function createSnowflakes() {
+            const container = document.getElementById('snowflakes');
+            const snowflakeCount = 50;
+            
+            for (let i = 0; i < snowflakeCount; i++) {
+                const snowflake = document.createElement('div');
+                snowflake.className = 'snowflake';
+                snowflake.innerHTML = '❄';
+                snowflake.style.left = Math.random() * 100 + '%';
+                snowflake.style.animationDuration = (Math.random() * 5 + 5) + 's';
+                snowflake.style.animationDelay = Math.random() * 5 + 's';
+                snowflake.style.fontSize = (Math.random() * 15 + 10) + 'px';
+                snowflake.style.opacity = Math.random();
+                container.appendChild(snowflake);
+            }
+        }
+
+        // Create particles
+        function createParticles() {
+            const container = document.getElementById('particles');
+            const particleCount = 30;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 8 + 's';
+                particle.style.animationDuration = (Math.random() * 4 + 6) + 's';
+                container.appendChild(particle);
+            }
+        }
+
+        // Initialize effects
+        createSnowflakes();
+        createParticles();
+
+        // Check gate
+        function checkGate() {
+            const birthdate = document.getElementById('birthdate').value;
+            const errorMsg = document.getElementById('errorMsg');
+            
+            if (birthdate === '150911') { // Ganti dengan tanggal lahir yang benar
+                errorMsg.style.display = 'none';
+                showSection(2);
+            } else {
+                errorMsg.textContent = 'Tanggal lahir salah! Coba lagi ❄️';
+                errorMsg.style.display = 'block';
+                
+                // Shake animation
+                const input = document.getElementById('birthdate');
+                input.style.animation = 'shake 0.5s';
+                setTimeout(() => {
+                    input.style.animation = '';
+                }, 500);
+            }
+        }
+
+        // Add shake animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes shake {
+                0%, 100% { transform: translateX(0); }
+                25% { transform: translateX(-10px); }
+                75% { transform: translateX(10px); }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Show section
+        function showSection(num) {
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.remove('active');
+            });
+            document.getElementById('section' + num).classList.add('active');
+        }
+
+        // Hold button logic
+        let holdTimer1 = null;
+        let progress1 = 0;
+        
+        function startHold() {
+            const btn = document.getElementById('holdBtn1');
+            const progress = document.getElementById('progress1');
+            
+            holdTimer1 = setInterval(() => {
+                progress1 += 2;
+                progress.style.width = progress1 + '%';
+                
+                if (progress1 >= 100) {
+                    clearInterval(holdTimer1);
+                    showSection(3);
+                }
+            }, 50);
+        }
+
+        function stopHold() {
+            if (holdTimer1) {
+                clearInterval(holdTimer1);
+                holdTimer1 = null;
+                progress1 = 0;
+                document.getElementById('progress1').style.width = '0%';
+            }
+        }
+
+        // Second hold button
+        let holdTimer2 = null;
+        let progress2 = 0;
+        
+        function startHold2() {
+            const progress = document.getElementById('progress2');
+            
+            holdTimer2 = setInterval(() => {
+                progress2 += 2;
+                progress.style.width = progress2 + '%';
+                
+                if (progress2 >= 100) {
+                    clearInterval(holdTimer2);
+                    showSection(4);
+                }
+            }, 50);
+        }
+
+        function stopHold2() {
+            if (holdTimer2) {
+                clearInterval(holdTimer2);
+                holdTimer2 = null;
+                progress2 = 0;
+                document.getElementById('progress2').style.width = '0%';
+            }
+        }
+
+        // Love slider
+        function updateLove(value) {
+            document.getElementById('lovePercent').textContent = value + '%';
+        }
+
+        function goToMusic() {
+            showSection(5);
+        }
+
+        // Music player
+        let isPlaying = false;
+        
+        function toggleMusic() {
+            const music = document.getElementById('bgMusic');
+            const btn = document.getElementById('playBtn');
+            
+            if (isPlaying) {
+                music.pause();
+                btn.textContent = '▶';
+                btn.classList.remove('playing');
+            } else {
+                music.play();
+                btn.textContent = '⏸';
+                btn.classList.add('playing');
+            }
+            isPlaying = !isPlaying;
+        }
+
+        function goToFinal() {
+            showSection(6);
+        }
+
+        // Enter key support
+        document.getElementById('birthdate').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                checkGate();
+            }
+        });
+    </script>
+</body>
+</html>
 
